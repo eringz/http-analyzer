@@ -9,12 +9,18 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Ajax Example</title>
 	<link rel="stylesheet" href="assets/stylesheet/style.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+	<script>
+		$(document).ready(function(){
+			
+		});
+	</script>
 </head>
 <body>
 	<div id="container">
-		<form action="">
+		<form action="websites/analyze" method="GET">
 			<label for="url">URL to fetch by Ajax:</label>
-			<input type="text" id="url" placeholder="Enter a URL">
+			<input type="text"  name="url" id="url" placeholder="Enter a URL">
 			<input type="submit" id="submit" value="Fetch">
 		</form>
 	</div>

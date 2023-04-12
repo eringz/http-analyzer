@@ -21,5 +21,9 @@ body{
             width: 500px;
         }
         #submit{
+            padding: 5px 40px;
             margin-left: 465px;
+            background-color: blue;
+            color: white;
+            border: none;
         }

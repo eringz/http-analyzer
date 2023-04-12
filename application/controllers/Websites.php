@@ -22,4 +22,11 @@ class Websites extends CI_Controller {
 	{
 		$this->load->view('websites');
 	}
+
+	public function analyze(){
+		$url = "http://" . $this->input->get('url');
+
+		$html = file_get_html($url);
+		
+	}
 }
