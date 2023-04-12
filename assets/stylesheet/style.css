@@ -21,9 +21,10 @@ body{
             width: 500px;
         }
         #submit{
-            padding: 5px 40px;
-            margin-left: 465px;
+            padding: 5px 25px;
+            margin-left: 432px;
             background-color: blue;
             color: white;
             border: none;
+            border-radius: 3px;
         }

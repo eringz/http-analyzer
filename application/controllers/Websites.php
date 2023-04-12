@@ -24,9 +24,15 @@ class Websites extends CI_Controller {
 	}
 
 	public function analyze(){
+		require('application/libraries/simple_form_dom.php');
+
 		$url = "http://" . $this->input->get('url');
 
 		$html = file_get_html($url);
-		
+		var_dump($html);
+		exit;
+		foreach($html->find('head') as $element){
+			echo $element;
+		}
 	}
 }

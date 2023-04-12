@@ -12,7 +12,27 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 	<script>
 		$(document).ready(function(){
-			
+			$('form').submit(function(){
+				$.get($(this).attr('action'), $(this).serialize(), function(res){
+					console.log('result: '+res);
+
+
+					
+
+
+
+
+
+
+
+
+
+
+
+
+				});
+				// return false;
+			});
 		});
 	</script>
 </head>
