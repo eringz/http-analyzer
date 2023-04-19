@@ -27,11 +27,20 @@ class Websites extends CI_Controller {
 		require('application/libraries/simple_form_dom.php');
 
 		$url = "http://" . $this->input->get('url');
-
+		// $htmlcount = 0;
+		// $divcount = 0;
+		// $pcount = 0;
+		// $acount = 0;
+		// $imgcount = 0;
+		// $ulcount = 0;
+		// $licount = 0;
+		// $h1count = 0;
+		// $h2count = 0;
+		// $h3count = 0;
 		$html = file_get_html($url);
-		var_dump($html);
-		exit;
-		foreach($html->find('head') as $element){
+		
+	
+		foreach($html->find('<div>') as $element){
 			echo $element;
 		}
 	}

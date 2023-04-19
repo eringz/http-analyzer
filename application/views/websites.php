@@ -16,7 +16,9 @@
 				$.get($(this).attr('action'), $(this).serialize(), function(res){
 					console.log('result: '+res);
 
-
+					//codes for analyzing the http response - probably anywhere from 10-20 lines of code
+					//codes for putting together the html - probably anywhere from 20-40 lines of code
+					//codes for updating the html - probably a few lines	
 					
 
 
@@ -44,6 +46,58 @@
 			<input type="submit" id="submit" value="Fetch">
 		</form>
 	</div>
-	<div id="result"></div>
+	<div id="result">
+		<div id="tags-analyzer">
+			<h1>HTML tags analyzer</h1>
+			<table>
+				<tr>
+					<th>HTML tags</th>
+					<th>number of apperances</th>
+				</tr>
+				<tr>
+					<td>meta</td>
+					<td>7</td>
+				</tr>
+				<tr>
+					<td>div</td>
+					<td>145</td>
+				</tr>
+				<tr>
+					<td>p</td>
+					<td>35</td>
+				</tr>
+				<tr>
+					<td>a</td>
+					<td>25</td>
+				</tr>
+				<tr>
+					<td>img</td>
+					<td>10</td>
+				</tr>
+				<tr>
+					<td>li</td>
+					<td>25</td>
+				</tr>
+				<tr>
+					<td>h1</td>
+					<td>2</td>
+				</tr>
+				<tr>
+					<td>h2</td>
+					<td>1</td>
+				</tr>
+				<tr>
+					<td>h3</td>
+					<td>0</td>
+				</tr>
+			</table>
+		</div>
+		<div id="http-response">
+			<h2>HTTP response:</h2>
+			<div id="contents">
+
+			</div>
+		</div>
+	</div>
 </body>
 </html>
