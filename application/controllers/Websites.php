@@ -26,22 +26,42 @@ class Websites extends CI_Controller {
 	public function analyze(){
 		require('application/libraries/simple_form_dom.php');
 
-		$url = "http://" . $this->input->get('url');
-		// $htmlcount = 0;
-		// $divcount = 0;
-		// $pcount = 0;
-		// $acount = 0;
-		// $imgcount = 0;
-		// $ulcount = 0;
-		// $licount = 0;
-		// $h1count = 0;
-		// $h2count = 0;
-		// $h3count = 0;
-		$html = file_get_html($url);
+		$url = "https://" . $this->input->get('url');
 		
-	
-		foreach($html->find('<div>') as $element){
-			echo $element;
-		}
+		$ch = curl_init();
+		// $html = file_get_html('https://slashdot.org/');
+
+		// $articles = $html->find('article[data-fhtype="story"]');
+		// foreach($articles as $article) {
+		// 	$item['title'] = $article->find('.story-title', 0)->plaintext;
+		// 	$item['intro'] = $article->find('.p', 0)->plaintext;
+		// 	$item['details'] = $article->find('.details', 0)->plaintext;
+		// 	$items[] = $item;
+		// }
+
+		// echo '<pre>';
+		// print_r($items);
+		// echo '</pre>';
+
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 30);
+		curl_setopt($ch, CURLOPT_URL, $url);
+		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+
+		$data = curl_exec($ch);
+		$info = curl_getinfo($ch);
+		
+		curl_close($ch);
+
+		$print_r($data);
+
+		
+
+		// echo '<pre>' . htmlentities($data) . '</pre>';
+		// echo '<pre>';
+		// var_dump($info);
+		// echo '</pre>';
+
 	}
 }

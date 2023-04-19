@@ -15,7 +15,7 @@
 			$('form').submit(function(){
 				$.get($(this).attr('action'), $(this).serialize(), function(res){
 					console.log('result: '+res);
-
+					
 					//codes for analyzing the http response - probably anywhere from 10-20 lines of code
 					//codes for putting together the html - probably anywhere from 20-40 lines of code
 					//codes for updating the html - probably a few lines	
@@ -33,7 +33,7 @@
 
 
 				});
-				// return false;
+				return false;
 			});
 		});
 	</script>
