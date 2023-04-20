@@ -31,10 +31,7 @@ body{
 
         div#tags-analyzer, div#http-response{
             vertical-align: top;
-            display: inline-block;
-
             margin: 0 20px;
-            /* border: 1px solid black; */
         }
         div#tags-analyzer{
             width: 500px;
@@ -44,11 +41,7 @@ body{
                 height: 500px;
                 border-collapse: collapse;
             }
-            div#contents{
-                
-                width: 800px;
-                height: 500px;  
-            }
+            
             table, div#contents{
                 border: 2px solid black;
                 padding: 10px;
@@ -57,4 +50,6 @@ body{
                 th, td{
                     border-right: 2px solid black;
                 }
+                
             
+        

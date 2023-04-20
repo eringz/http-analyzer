@@ -10,29 +10,30 @@
 	<title>Ajax Example</title>
 	<link rel="stylesheet" href="assets/stylesheet/style.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+	<style>
+			div#contents{
+				text-align: start;
+                height: 500px;
+                overflow-x: hidden;
+                overflow-y: auto;
+            }
+	</style>
 	<script>
 		$(document).ready(function(){
 			$('form').submit(function(){
 				$.get($(this).attr('action'), $(this).serialize(), function(res){
-					console.log('result: '+res);
-					
+					// console.log('result: ' + res.data);
+
 					//codes for analyzing the http response - probably anywhere from 10-20 lines of code
-					//codes for putting together the html - probably anywhere from 20-40 lines of code
-					//codes for updating the html - probably a few lines	
 					
+					//codes for putting together the html - probably anywhere from 20-40 lines of code
+					let http_response = `<h2>HTTP response:</h2>`;
+					http_response += `<div id="contents"> ${res.data}</div>`;
+					console.log(http_response);
+					//codes for updating the html - probably a few lines	
+					document.getElementById('http-response').innerHTML = http_response;
 
-
-
-
-
-
-
-
-
-
-
-
-				});
+				}, 'json');
 				return false;
 			});
 		});
@@ -93,10 +94,7 @@
 			</table>
 		</div>
 		<div id="http-response">
-			<h2>HTTP response:</h2>
-			<div id="contents">
-
-			</div>
+			
 		</div>
 	</div>
 </body>

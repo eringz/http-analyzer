@@ -29,7 +29,7 @@ class Websites extends CI_Controller {
 		$url = "https://" . $this->input->get('url');
 		
 		$ch = curl_init();
-		// $html = file_get_html('https://slashdot.org/');
+		// $html = file_get_html($url);
 
 		// $articles = $html->find('article[data-fhtype="story"]');
 		// foreach($articles as $article) {
@@ -54,14 +54,10 @@ class Websites extends CI_Controller {
 		
 		curl_close($ch);
 
-		$print_r($data);
-
+		$result['data'] = '<pre>' . htmlentities($data) . '</pre>';
 		
-
-		// echo '<pre>' . htmlentities($data) . '</pre>';
-		// echo '<pre>';
-		// var_dump($info);
-		// echo '</pre>';
+		$result_json = json_encode($result);
+		print_r($result_json);
 
 	}
 }
