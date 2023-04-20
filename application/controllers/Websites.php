@@ -27,8 +27,6 @@ class Websites extends CI_Controller {
 		require('application/libraries/simple_form_dom.php');
 
 		$url = "https://" . $this->input->get('url');
-		
-		
 		$html = file_get_html($url);
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
@@ -42,72 +40,30 @@ class Websites extends CI_Controller {
 		
 		curl_close($ch);
 
-		$meta_count = 0;
-		$div_count = 0;
-		$p_count = 0;
-		$a_count = 0;
-		$img_count = 0;
-		$ul_count = 0;
-		$li_count = 0;
-		$h1_count = 0;
-		$h2_count = 0;
-		$h3_count = 0;
-		
-		foreach($html->find('meta') as $element){
-			$meta_count++;
+		$tags = array(
+			array('tag' => 'meta', 'count' => 0),
+			array('tag' => 'div', 'count' => 0),
+			array('tag' => 'p', 'count' => 0),
+			array('tag' => 'a', 'count' => 0),
+			array('tag' => 'img', 'count' => 0),
+			array('tag' => 'ul', 'count' => 0),
+			array('tag' => 'li', 'count' => 0),
+			array('tag' => 'h1', 'count' => 0),
+			array('tag' => 'h2', 'count' => 0),
+			array('tag' => 'h3', 'count' => 0),
+		);
+
+		for($i = 0; $i< COUNT($tags); $i++){
+			foreach($html->find($tags[$i]['tag']) as $element){
+				$tags[$i]['count']++;
+			}
 		}
 
-		foreach($html->find('div') as $element){
-			$div_count++;
-		}
-
-		foreach($html->find('p') as $element){
-			$p_count++;
-		}
-
-		foreach($html->find('a') as $element){
-			$a_count++;
-		}
-
-		foreach($html->find('img') as $element){
-			$img_count++;
-		}
-
-		foreach($html->find('ul') as $element){
-			$ul_count++;
-		}
-
-		foreach($html->find('li') as $element){
-			$li_count++;
-		}
-
-		foreach($html->find('h1') as $element){
-			$h1_count++;
-		}
-
-		foreach($html->find('h2') as $element){
-			$h2_count++;
-		}
-
-		foreach($html->find('h3') as $element){
-			$h3_count++;
-		}
-		
-		$html->clear();
-
-		$result['meta'] = $meta_count;
-		$result['div'] = $div_count;
-		$result['p'] = $p_count;
-		$result['a'] = $a_count;
-		$result['img'] = $img_count;
-		$result['ul'] = $ul_count;
-		$result['li'] = $li_count;
-		$result['h1'] = $h1_count;
-		$result['h2'] = $h2_count;
-		$result['h3'] = $h3_count;
+		$result['tags'] = $tags;
 		$result['data'] = '<pre>' . htmlentities($data) . '</pre>';
-		
 		$result_json = json_encode($result);
+
+		$html->clear();
 		print_r($result_json);
 
 	}
