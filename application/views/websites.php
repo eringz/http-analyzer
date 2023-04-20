@@ -22,8 +22,10 @@
 			$('form').submit(function(){
 				$.get($(this).attr('action'), $(this).serialize(), function(res){
 					
-					//codes for putting together the html - probably anywhere from 20-40 lines of code
-					//html concatination for http tags analyzer
+					/**
+					 * codes for putting together the html - probably anywhere from 20-40 lines of code
+					 * html concatination for http tags analyzer
+					 */
 					let http_tags = `<h1>HTML tags analyzer</h1>
 									<table>
 										<tr>
@@ -64,10 +66,8 @@
 	</div>
 	<div id="result">
 		<div id="tags-analyzer">
-			
 		</div>
 		<div id="http-response">
-			
 		</div>
 	</div>
 </body>

@@ -24,22 +24,14 @@ class Websites extends CI_Controller {
 	}
 
 	public function analyze(){
-		require('application/libraries/simple_form_dom.php');
-
-		$url = "https://" . $this->input->get('url');
-		$html = file_get_html($url);
-		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 30);
-		curl_setopt($ch, CURLOPT_URL, $url);
-		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-
-		$data = curl_exec($ch);
-		$info = curl_getinfo($ch);
 		
-		curl_close($ch);
+		require('application/libraries/simple_form_dom.php');
+		
+		//Concat https:// and get method of users url input
+		$url = "https://" . $this->input->get('url');
 
+		//Initialization for http tags analyzer
+		$html = file_get_html($url);
 		$tags = array(
 			array('tag' => 'meta', 'count' => 0),
 			array('tag' => 'div', 'count' => 0),
@@ -60,10 +52,25 @@ class Websites extends CI_Controller {
 		}
 
 		$result['tags'] = $tags;
-		$result['data'] = '<pre>' . htmlentities($data) . '</pre>';
-		$result_json = json_encode($result);
-
 		$html->clear();
+
+		//Initialization of curl settings for http response
+		$ch = curl_init();
+
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 30);
+		curl_setopt($ch, CURLOPT_URL, $url);
+		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+		
+		curl_close($ch);
+		$data = curl_exec($ch);
+		$info = curl_getinfo($ch);
+		
+		$result['data'] = '<pre>' . htmlentities($data) . '</pre>';
+		
+		//Convertion of arrays into json file
+		$result_json = json_encode($result);
 		print_r($result_json);
 
 	}
