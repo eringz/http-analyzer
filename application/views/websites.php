@@ -22,15 +22,62 @@
 		$(document).ready(function(){
 			$('form').submit(function(){
 				$.get($(this).attr('action'), $(this).serialize(), function(res){
-					// console.log('result: ' + res.data);
-
-					//codes for analyzing the http response - probably anywhere from 10-20 lines of code
 					
+					//codes for analyzing the http response - probably anywhere from 10-20 lines of code
+					console.log('result: ' + res.div);
+
 					//codes for putting together the html - probably anywhere from 20-40 lines of code
+					//html concatination for html tags analyzer
+					let http_tags = `<h1>HTML tags analyzer</h1>
+									<table>
+										<tr>
+											<th>HTML tags</th>
+											<th>number of apperances</th>
+										</tr>
+										<tr>
+											<td>meta</td>
+											<td>${res.meta}</td>
+										</tr>
+										<tr>
+											<td>div</td>
+											<td>${res.div}</td>
+										</tr>
+										<tr>
+											<td>p</td>
+											<td>${res.p}</td>
+										</tr>
+										<tr>
+											<td>a</td>
+											<td>${res.a}</td>
+										</tr>
+										<tr>
+											<td>img</td>
+											<td>${res.img}</td>
+										</tr>
+										<tr>
+											<td>li</td>
+											<td>${res.li}</td>
+										</tr>
+										<tr>
+											<td>h1</td>
+											<td>${res.h1}</td>
+										</tr>
+										<tr>
+											<td>h2</td>
+											<td>${res.h2}</td>
+										</tr>
+										<tr>
+											<td>h3</td>
+											<td>${res.h3}</td>
+										</tr>
+									</table>`
+
+					//html concatination for http response
 					let http_response = `<h2>HTTP response:</h2>`;
 					http_response += `<div id="contents"> ${res.data}</div>`;
-					console.log(http_response);
+
 					//codes for updating the html - probably a few lines	
+					document.getElementById('tags-analyzer').innerHTML = http_tags;
 					document.getElementById('http-response').innerHTML = http_response;
 
 				}, 'json');
@@ -49,49 +96,7 @@
 	</div>
 	<div id="result">
 		<div id="tags-analyzer">
-			<h1>HTML tags analyzer</h1>
-			<table>
-				<tr>
-					<th>HTML tags</th>
-					<th>number of apperances</th>
-				</tr>
-				<tr>
-					<td>meta</td>
-					<td>7</td>
-				</tr>
-				<tr>
-					<td>div</td>
-					<td>145</td>
-				</tr>
-				<tr>
-					<td>p</td>
-					<td>35</td>
-				</tr>
-				<tr>
-					<td>a</td>
-					<td>25</td>
-				</tr>
-				<tr>
-					<td>img</td>
-					<td>10</td>
-				</tr>
-				<tr>
-					<td>li</td>
-					<td>25</td>
-				</tr>
-				<tr>
-					<td>h1</td>
-					<td>2</td>
-				</tr>
-				<tr>
-					<td>h2</td>
-					<td>1</td>
-				</tr>
-				<tr>
-					<td>h3</td>
-					<td>0</td>
-				</tr>
-			</table>
+			
 		</div>
 		<div id="http-response">
 			
